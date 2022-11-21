@@ -113,6 +113,55 @@ def hello():
 
 + abort()函数用于抛出指定的错误
 
++ jsonify函数可以通过传参的方式生成json响应
+
+  ```python
+  from flask import jsonify
+  
+  # 方式一
+  return jsonify(name='biao', age=27)
+  
+  # 方式二
+  return jsonify({name='biao', age=27})
+  
+  # 可以指定返回的响应值
+  return jsonify(message='Error!'), 500
+  ```
+
++ Response类的常用属性和方法
+
+  | 方法/属性   | 说明                                                        |
+  | ----------- | ----------------------------------------------------------- |
+  | headers     | 一个Werkzeug的Headers对象，表示响应首部，可以像字典一样操作 |
+  | status      | 状态码，文本类型                                            |
+  | status_code | 状态码，整型                                                |
+  | mimetype    | MIME类型(仅包含内容类型部分)                                |
+  | set_cookie  | 用来设置一个cookie                                          |
+
++ set_cookie方法的参数
+
+  | 属性     | 说明                                                         |
+  | -------- | ------------------------------------------------------------ |
+  | key      | cookie的键(名称)                                             |
+  | value    | cookie的值                                                   |
+  | max_age  | cookie被保存的时间数，单位为秒；默认在用户回话结束(即关闭浏览器)时过期 |
+  | expires  | 具体的过期时间，一个datetime对象或UNIX时间戳                 |
+  | path     | 限制cookie只在给定的路径可用，默认为整个域名                 |
+  | domain   | 设置cookie可用的域名                                         |
+  | secure   | 如果设为True，只有通过HTTPS才可以使用                        |
+  | httponly | 如果设置为True，禁止客户端JavaScript获取cookie               |
+
++ Flask中的上下文变量
+
+  | 变量名      | 上下文类别 | 说明                                                         |
+  | ----------- | ---------- | ------------------------------------------------------------ |
+  | current_app | 程序上下文 | 指向处理请求的当前程序实例                                   |
+  | g           | 程序上下文 | 替代Python的全局变量用法，确保仅在当前请求中可用。用于存储全局数据，每次请求都会重设 |
+  | request     | 请求上下文 | 封装客户端发出的请求报文数据                                 |
+  | session     | 请求上下文 | 用于记住请求之间的数据，通过签名的cookie实现                 |
+
+  
+
 
 
 
