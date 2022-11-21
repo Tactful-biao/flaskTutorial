@@ -208,6 +208,9 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+# db
+*.db
+
 # PyBuilder
 .pybuilder/
 target/
