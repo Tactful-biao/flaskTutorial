@@ -1,4 +1,7 @@
+from urllib.parse import urlparse, urljoin
+
 from flask import Flask, request, abort, make_response, json, jsonify, redirect, url_for, session
+from jinja2.utils import generate_lorem_ipsum
 
 app = Flask(__name__)
 
@@ -105,6 +108,43 @@ def admin():
     if 'login_in' not in session:
         abort(403)
     return 'Welcome to admin page!'
+
+
+@app.route('/foo3/')
+def foo3():
+    return f'<h1>Foo Page</h1><a href="{url_for("do_something")}">Do something and redirect</a>'
+
+
+@app.route("/bar2/")
+def bar2():
+    return f'<h1>Bar Page</h1><a href="{url_for("do_something")}">Do something and redirect</a>'
+
+
+def redirect_back(default='hello', **kwargs):
+    for target in request.args.get('next'), request.referrer:
+        if not target:
+            continue
+        if is_safe_url(target):
+            return redirect(target)
+    return redirect(url_for(default, **kwargs))
+
+
+@app.route('/do_something_and_redirect')
+def do_something():
+    return redirect_back()
+
+
+# 校验URL的安全性
+def is_safe_url(target):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ('http', 'https') and ref_url.netloc == test_url.netloc
+
+
+@app.route('/more/')
+def more():
+    # jinja2提供的随机生成文章内容的函数
+    return generate_lorem_ipsum(n=2)
 
 
 if __name__ == '__main__':
