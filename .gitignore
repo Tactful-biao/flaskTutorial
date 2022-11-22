@@ -211,6 +211,9 @@ docs/_build/
 # db
 *.db
 
+# migrations
+migrations/
+
 # PyBuilder
 .pybuilder/
 target/
