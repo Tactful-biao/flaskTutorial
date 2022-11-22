@@ -173,6 +173,9 @@ def hello():
   | success     | 函数；无默认值                                               | 请求成功后调用的回调函数                                   |
   | error       | 函数；无默认值                                               | 请求失败后调用的回调函数                                   |
 
+
+## Flask数据库相关
+
 + SQLAlchemy常用的字段类型
 
   | 字段        | 说明                                          |
@@ -417,9 +420,31 @@ def hello():
         kwargs['target'].edit_time += 1
     ```
 
-    
+## Flask-Mail相关
 
++ Flask-Mail的常用配置
 
+  | 配置键              | 说明                     | 默认值    |
+  | ------------------- | ------------------------ | --------- |
+  | MAIL_SERVER         | 用于发送邮件的SMTp服务器 | localhost |
+  | MAIL_PORT           | 发信端口                 | 25        |
+  | MAIL_USE_TLS        | 是否使用STARTTLS         | False     |
+  | MAIL_USE_SSL        | 是否使用SSL/TLS          | False     |
+  | MAIL_USERNAME       | 发信服务器的用户名       | None      |
+  | MAIL_PASSWORD       | 发信服务器的密码         | None      |
+  | MAIL_DEFAULT_SENDER | 默认的发信人             | None      |
+
++ 常用SMTP服务提供商配置
+
+  | 电子邮件服务供应商 | 发信服务器                       | MAIL_USERNAME | MAIL_PASSWORD | 额外步骤                                      |
+  | ------------------ | -------------------------------- | ------------- | ------------- | --------------------------------------------- |
+  | Gmail              | smtp.gmail.com                   | 邮箱地址      | 邮箱密码      | 开启"Allow less secureapps",在本地设置VPN代理 |
+  | QQ邮箱             | smtp.qq.com                      | 邮箱地址      | 授权码        | 开启SMTP服务并获取授权码                      |
+  | 新浪邮箱           | smtp.sina.com                    | 邮箱地址      | 邮箱密码      | 开启SMTP服务                                  |
+  | 163邮箱            | smtp.163.com                     | 邮箱地址      | 授权码        | 开启SMTP服务并获取授权码                      |
+  | Outlook/Hotmail    | smtp.live.com/smtp.office363.com | 邮箱地址      | 邮箱密码      | 无                                            |
+
+  
 
 
 
