@@ -1,5 +1,5 @@
 from datetime import datetime
-from sayhi.sayhello import db
+from sayhello import db
 
 
 class Message(db.Model):

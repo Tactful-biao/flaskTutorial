@@ -1,6 +1,6 @@
 import click
-from sayhi.sayhello import app, db
-from sayhi.sayhello.models import Message
+from sayhello import app, db
+from sayhello.models import Message
 
 
 @app.cli.command()
